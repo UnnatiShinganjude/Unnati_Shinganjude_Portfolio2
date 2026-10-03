@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unnati Shinganjude - Developer Portfolio</title>
+    <!-- Using Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        // Tailwind config defining the sophisticated dark theme
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        bgDark: '#0a0a0a', 
+                        cardDark: '#121015', 
+                        accent: '#a855f7', // Restored purple theme
+                        accentHover: '#c084fc',
+                        subtle: '#27272a', 
+                        textMain: '#ffffff', 
+                        textMuted: '#a1a1aa', 
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+        
+        body {
+            background-color: #0a0a0a;
+            /* Prevent scrollbar shift when changing pages */
+            overflow-y: scroll; 
+        }
+
+        /* Smooth fade-in animation for page transitions */
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hide scrollbar for the nav on small screens but allow scrolling */
+        .nav-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-scroll {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+
+<body class="bg-bgDark text-textMain font-sans antialiased min-h-screen flex flex-col items-center pt-20 md:pt-24 pb-10 px-3 sm:px-4 md:px-8 relative">
+
+    <!-- Top Centered Navigation -->
+    <nav class="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[96%] sm:w-[95%] max-w-2xl">
+        <div class="bg-cardDark/80 backdrop-blur-md border border-subtle rounded-2xl md:rounded-full px-2 py-2 shadow-2xl flex justify-between md:justify-center items-center gap-1 md:gap-4 nav-scroll overflow-x-auto whitespace-nowrap">
+            
+            <button onclick="switchTab('about')" id="btn-about" class="nav-btn active px-3 sm:px-4 md:px-6 py-2 md:py-2.5 rounded-xl md:rounded-full text-xs sm:text-sm font-medium transition-all duration-300 text-accent bg-subtle/40">
+                About
+            </button>
+            <button onclick="switchTab('resume')" id="btn-resume" class="nav-btn px-3 sm:px-4 md:px-6 py-2 md:py-2.5 rounded-xl md:rounded-full text-xs sm:text-sm font-medium transition-all duration-300 text-textMuted hover:text-textMain hover:bg-subtle/40">
+                Resume
+            </button>
+            <button onclick="switchTab('portfolio')" id="btn-portfolio" class="nav-btn px-3 sm:px-4 md:px-6 py-2 md:py-2.5 rounded-xl md:rounded-full text-xs sm:text-sm font-medium transition-all duration-300 text-textMuted hover:text-textMain hover:bg-subtle/40">
+                Portfolio
+            </button>
+            <button onclick="switchTab('blog')" id="btn-blog" class="nav-btn px-3 sm:px-4 md:px-6 py-2 md:py-2.5 rounded-xl md:rounded-full text-xs sm:text-sm font-medium transition-all duration-300 text-textMuted hover:text-textMain hover:bg-subtle/40">
+                Blog
+            </button>
+            <button onclick="switchTab('contact')" id="btn-contact" class="nav-btn px-3 sm:px-4 md:px-6 py-2 md:py-2.5 rounded-xl md:rounded-full text-xs sm:text-sm font-medium transition-all duration-300 text-textMuted hover:text-textMain hover:bg-subtle/40">
+                Contact
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- Container for the two main columns -->
+    <div class="max-w-6xl w-full flex flex-col lg:flex-row gap-6 relative mt-4 md:mt-0">
+        
+        <!-- ==================== LEFT COLUMN: SIDEBAR ==================== -->
+        <aside class="w-full lg:w-1/3 xl:w-1/4 flex-shrink-0">
+            <!-- Adjusted top spacing to account for the fixed nav -->
+            <div class="bg-cardDark rounded-3xl p-6 md:p-8 border border-subtle shadow-lg lg:sticky lg:top-24 flex flex-col items-center">
+                
+                <!-- Profile Image -->
+                <div class="w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden bg-subtle mb-5 md:mb-6 shadow-md relative group">
+                    <img src="profile.jpg" alt="Profile" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300">
+                </div>
+
+                <!-- Name and Title -->
+                <h1 class="text-xl md:text-2xl font-bold mb-2 tracking-tight text-center">Unnati Shinganjude</h1>
+                <div class="bg-bgDark text-textMuted px-3 py-2 md:px-4 rounded-lg text-[11px] md:text-xs mb-6 md:mb-8 font-medium border border-subtle text-center">
+                    Full Stack Developer | Data Scientist | AI Enthusiast
+                </div>
+                
+                <!-- Divider -->
+                <div class="w-full h-px bg-subtle mb-6 md:mb-8"></div>
+
+                <!-- Contact Information List -->
+                <div class="w-full space-y-6 mb-8">
+                    <!-- Email -->
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 flex-shrink-0 bg-bgDark rounded-xl flex items-center justify-center text-accent shadow-sm border border-subtle">
+                            <i class="fa-regular fa-envelope text-sm"></i>
+                        </div>
+                        <div class="flex-1 overflow-hidden">
+                            <p class="text-[11px] text-textMuted uppercase tracking-wider mb-0.5">Email</p>
+                            <a href="mailto:unnatishinganjude.work@gmail.com" class="text-sm font-medium hover:text-accent transition-colors truncate block" title="unnatishinganjude.work@gmail.com">
+                                unnatishinganjude.work@gmail.com
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 flex-shrink-0 bg-bgDark rounded-xl flex items-center justify-center text-accent shadow-sm border border-subtle">
+                            <i class="fa-solid fa-location-dot text-sm"></i>
+                        </div>
+                        <div class="flex-1 overflow-hidden">
+                            <p class="text-[11px] text-textMuted uppercase tracking-wider mb-0.5">Location</p>
+                            <p class="text-sm font-medium text-textMain">
+                                Pune, India
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex gap-4 mt-auto">
+                    <a href="#" class="w-9 h-9 flex items-center justify-center text-textMuted hover:text-accent transition-colors">
+                        <i class="fa-brands fa-linkedin-in text-lg"></i>
+                    </a>
+                    <a href="https://github.com/unnatishinganjude" target="_blank" class="w-9 h-9 flex items-center justify-center text-textMuted hover:text-accent transition-colors">
+                        <i class="fa-brands fa-github text-lg"></i>
+                    </a>
+                    
+                </div>
+            </div>
+        </aside>
+
+        <!-- ==================== RIGHT COLUMN: MAIN CONTENT ==================== -->
+        <main class="w-full lg:w-2/3 xl:w-3/4">
+            <div class="bg-cardDark rounded-3xl p-6 sm:p-8 md:p-10 border border-subtle shadow-lg min-h-[auto] lg:min-h-[600px]">
+                
+               
+                <!-- ================= ABOUT SECTION ================= -->
+                <section id="sec-about" class="page-section fade-in">
+                    <!-- Section Header -->
+                    <div class="mb-6 md:mb-8 relative">
+                        <h2 class="text-2xl md:text-3xl font-bold inline-block pb-3 md:pb-4 relative z-10">
+                            About Me
+                            <div class="absolute bottom-0 left-0 w-10 md:w-12 h-1 bg-accent rounded-sm"></div>
+                        </h2>
+                    </div>
+
+                    <!-- Text Content -->
+                    <div class="space-y-4 md:space-y-6 text-textMuted leading-relaxed text-sm md:text-[15px] font-light mb-10 md:mb-12">
+                        <p>
+                            I am a Full-Stack Developer with hands-on internship experience building scalable web applications using PHP (Laravel), JavaScript, and SQL. I possess a strong foundation in Python and data-driven applications, with a dedicated focus on performance, usability, and solving real-world problems through clean, efficient code.
+                        </p>
+                        <p>
+                            During my internship, I handled end-to-end development across various platforms, successfully building and deploying applications like TechStore, 4HM, and a comprehensive School Management System. My work spans across crafting the initial UI design, establishing robust backend integrations, and implementing complex role-based access control systems to ensure data security and integrity.
+                        </p>
+                        <p>
+                            I specialize in designing responsive user interfaces and intuitive admin dashboards tailored for e-commerce and healthcare-oriented applications. On the backend, I have extensive experience building and maintaining MySQL and PostgreSQL databases, implementing precise CRUD operations for highly efficient data management and seamless user experiences.
+                        </p>
+                    </div>
+
+                    <!-- What I'm doing -->
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-textMain">What I'm Doing</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                        
+                        <!-- Card 1 -->
+                        <div class="bg-[#1e1e1f] rounded-2xl p-5 md:p-6 border border-subtle shadow-sm flex flex-col gap-2 md:gap-3 transition-colors hover:border-subtle/80">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-layer-group text-accent text-sm"></i>
+                                <h4 class="text-base md:text-lg font-bold text-textMain">Full-Stack Development</h4>
+                            </div>
+                            <p class="text-[13px] md:text-sm text-textMuted leading-relaxed">
+                                Building end-to-end web applications with PHP (Laravel) and modern JavaScript, handling everything from seamless UIs to robust database integrations.
+                            </p>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="bg-[#1e1e1f] rounded-2xl p-5 md:p-6 border border-subtle shadow-sm flex flex-col gap-2 md:gap-3 transition-colors hover:border-subtle/80">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-desktop text-accent text-sm"></i>
+                                <h4 class="text-base md:text-lg font-bold text-textMain">Frontend Development</h4>
+                            </div>
+                            <p class="text-[13px] md:text-sm text-textMuted leading-relaxed">
+                                Crafting responsive, accessible, and intuitive user interfaces. I focus on creating seamless, engaging user experiences across all devices and screen sizes.
+                            </p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="bg-[#1e1e1f] rounded-2xl p-5 md:p-6 border border-subtle shadow-sm flex flex-col gap-2 md:gap-3 transition-colors hover:border-subtle/80">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-server text-accent text-sm"></i>
+                                <h4 class="text-base md:text-lg font-bold text-textMain">Backend Engineering</h4>
+                            </div>
+                            <p class="text-[13px] md:text-sm text-textMuted leading-relaxed">
+                                Architecting secure and scalable server-side systems, designing relational databases (MySQL/PostgreSQL), and implementing role-based access control.
+                            </p>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="bg-[#1e1e1f] rounded-2xl p-5 md:p-6 border border-subtle shadow-sm flex flex-col gap-2 md:gap-3 transition-colors hover:border-subtle/80">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-brain text-accent text-sm"></i>
+                                <h4 class="text-base md:text-lg font-bold text-textMain">Data Science & AI</h4>
+                            </div>
+                            <p class="text-[13px] md:text-sm text-textMuted leading-relaxed">
+                                Exploring data-driven solutions and machine learning models, with a strong interest in leveraging AI for complex problem-solving like anomaly detection.
+                            </p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- ================= RESUME SECTION ================= -->
+                <section id="sec-resume" class="page-section hidden">
+                    <div class="mb-6 md:mb-8 relative">
+                        <h2 class="text-2xl md:text-3xl font-bold inline-block pb-3 md:pb-4 relative z-10">
+                            Resume
+                            <div class="absolute bottom-0 left-0 w-10 md:w-12 h-1 bg-accent rounded-sm"></div>
+                        </h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
+                        <!-- Experience Timeline -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-6 text-lg md:text-xl font-semibold">
+                                <div class="w-10 h-10 bg-subtle rounded-xl flex items-center justify-center text-accent shadow-sm border border-subtle/50">
+                                    <i class="fa-solid fa-briefcase"></i>
+                                </div>
+                                Experience
+                            </div>
+                            
+                            <div class="relative border-l border-subtle ml-5 space-y-8 pb-4">
+                                <div class="relative pl-8">
+                                    <div class="absolute w-3 h-3 bg-accent rounded-full -left-[6.5px] top-1.5 shadow-[0_0_10px_rgba(168,85,247,0.5)]"></div>
+                                    <h4 class="text-base font-bold text-textMain"> Full Stack Developer Intern</h4>
+                                    <p class="text-sm text-accent mb-2">PSYT Private Limited &bull; 2025 - 2026</p>
+                                    <p class="text-sm text-textMuted leading-relaxed">Developed and maintained over 10 client websites using PHP and the Laravel framework. Successfully revamped user interfaces across multiple projects to improve overall user experience and engagement.</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <!-- Education Timeline -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-6 text-xl font-semibold">
+                                <div class="w-10 h-10 bg-subtle rounded-xl flex items-center justify-center text-accent shadow-sm border border-subtle/50">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                                Education
+                            </div>
+                            
+                            <div class="relative border-l border-subtle ml-5 space-y-8 pb-4">
+                                <div class="relative pl-8">
+                                    <div class="absolute w-3 h-3 bg-accent rounded-full -left-[6.5px] top-1.5 shadow-[0_0_10px_rgba(168,85,247,0.5)]"></div>
+                                    <h4 class="text-base font-bold text-textMain">Masters in Computer Applications</h4>
+                                    <p class="text-[13px] md:text-sm text-accent mb-2">Indira College of Engineering and Management &bull; 2026 - 2028</p>
+                                    <p class="text-[13px] md:text-sm text-textMuted leading-relaxed">Specialized in Artificial Intelligence and Distributed Systems.(Ongoing)</p>
+                                </div>
+                                <div class="relative pl-8">
+                                    <div class="absolute w-3 h-3 bg-subtle rounded-full -left-[6.5px] top-1.5 border-2 border-bgDark"></div>
+                                    <h4 class="text-base font-bold text-textMain">Bachelors in Computer Applications</h4>
+                                    <p class="text-[13px] md:text-sm text-accent mb-2">MES Abashaeb Garware College Pune &bull; 2023-2026</p>
+                                    <p class="text-[13px] md:text-sm text-textMuted leading-relaxed">Core coursework in algorithms, data structures, and database management systems.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="mt-10 md:mt-12">
+                        <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-textMain">My Skills</h3>
+                        <div class="bg-bgDark p-5 md:p-6 rounded-2xl border border-subtle shadow-sm flex flex-wrap gap-2 md:gap-3">
+                            <span class="px-3 md:px-4 py-1.5 md:py-2 bg-subtle/50 text-textMain text-[13px] md:text-sm rounded-lg border border-subtle">JavaScript (ES6+)</span>
+                            <span class="px-4 py-2 bg-subtle/50 text-textMain text-sm rounded-lg border border-subtle">Python</span>
+                            <span class="px-4 py-2 bg-subtle/50 text-textMain text-sm rounded-lg border border-subtle">Flask</span>
+                            <span class="px-4 py-2 bg-subtle/50 text-textMain text-sm rounded-lg border border-subtle">PHP</span>
+                            <span class="px-4 py-2 bg-subtle/50 text-textMain text-sm rounded-lg border border-subtle">Laravel</span>
+                            <span class="px-4 py-2 bg-subtle/50 text-textMain text-sm rounded-lg border border-subtle">Rest APIs</span>
+                            <span class="px-4 py-2 bg-subtle/50 text-textMain text-sm rounded-lg border border-subtle">React & Next.js</span>
+                            <span class="px-4 py-2 bg-subtle/50 text-textMain text-sm rounded-lg border border-subtle">Node.js / Express</span>
+                            <span class="px-4 py-2 bg-subtle/50 text-textMain text-sm rounded-lg border border-subtle">PostgreSQL</span>
+                            <span class="px-4 py-2 bg-subtle/50 text-textMain text-sm rounded-lg border border-subtle">MongoDB</span>
+                            <span class="px-4 py-2 bg-subtle/50 text-textMain text-sm rounded-lg border border-subtle">Docker & AWS</span>
+                            <span class="px-3 md:px-4 py-1.5 md:py-2 bg-subtle/50 text-textMain text-[13px] md:text-sm rounded-lg border border-subtle">Machine Learning</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= PORTFOLIO SECTION ================= -->
+                <section id="sec-portfolio" class="page-section hidden">
+                    <div class="mb-6 md:mb-8 relative">
+                        <h2 class="text-2xl md:text-3xl font-bold inline-block pb-3 md:pb-4 relative z-10">
+                            Portfolio
+                            <div class="absolute bottom-0 left-0 w-10 md:w-12 h-1 bg-accent rounded-sm"></div>
+                        </h2>
+                    </div>
+
+                    <ul class="flex flex-wrap gap-3 md:gap-4 mb-6 md:mb-8 text-xs md:text-sm font-medium">
+                        <li class="text-accent cursor-pointer">All</li>
+                        <li class="text-textMuted hover:text-textMain cursor-pointer transition-colors">E-Commerce</li>
+                        <li class="text-textMuted hover:text-textMain cursor-pointer transition-colors">Laravel Full-Stack</li>
+                        <li class="text-textMuted hover:text-textMain cursor-pointer transition-colors">Frontend</li>
+                    </ul>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                        
+                        <!-- Project 1: Turmeric -->
+                        <div class="group flex flex-col bg-bgDark border border-subtle rounded-2xl overflow-hidden hover:border-subtle/80 hover:shadow-lg transition-all">
+                            <!-- Replace '#' with your live demo or video link -->
+                            <a href="turmira.mp4" target="_blank" class="relative h-48 sm:h-56 overflow-hidden block">
+                                <img src="data:image/jpeg;base64,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" alt="Turmeric E-Commerce" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-bgDark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                                    <span class="px-4 py-2 bg-accent text-white text-sm font-medium rounded-lg shadow-lg flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                        <i class="fa-solid fa-play"></i> View Demo
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="p-5 md:p-6 flex flex-col flex-grow">
+                                <h4 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors">Turmira</h4>
+                                <p class="text-[13px] md:text-sm text-textMuted leading-relaxed mb-5 flex-grow">
+                                    A comprehensive e-commerce platform. Developed the dynamic customer-facing frontend alongside a robust admin panel featuring full CRUD operations for seamless inventory and order management.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-auto">
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">PHP</span>
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">Laravel</span>
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">Full-Stack</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 2: Vastuguru -->
+                        <div class="group flex flex-col bg-bgDark border border-subtle rounded-2xl overflow-hidden hover:border-subtle/80 hover:shadow-lg transition-all">
+                            <!-- Replace '#' with your live demo or video link -->
+                            <a href="vastuguru.mp4" target="_blank" class="relative h-48 sm:h-56 overflow-hidden block">
+                                <img src="https://images.unsplash.com/photo-1532968961962-8a0cb3a2d4f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Vastuguru" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-bgDark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                                    <span class="px-4 py-2 bg-accent text-white text-sm font-medium rounded-lg shadow-lg flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                        <i class="fa-solid fa-play"></i> View Demo
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="p-5 md:p-6 flex flex-col flex-grow">
+                                <h4 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors">Vastuguru</h4>
+                                <p class="text-[13px] md:text-sm text-textMuted leading-relaxed mb-5 flex-grow">
+                                    A full-stack astrological consultation platform. Engineered the complete architecture, pairing a responsive frontend UI with a secure backend handling complex logic and CRUD operations.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-auto">
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">PHP</span>
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">Laravel</span>
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">Architecture</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 3: Saheli -->
+                        <div class="group flex flex-col bg-bgDark border border-subtle rounded-2xl overflow-hidden hover:border-subtle/80 hover:shadow-lg transition-all">
+                            <!-- Replace '#' with your live demo or video link -->
+                            <a href="https://sahelistores.com/" target="_blank" class="relative h-48 sm:h-56 overflow-hidden block">
+                                <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Saheli Catalog" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-bgDark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                                    <span class="px-4 py-2 bg-accent text-white text-sm font-medium rounded-lg shadow-lg flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                        <i class="fa-solid fa-play"></i> View Demo
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="p-5 md:p-6 flex flex-col flex-grow">
+                                <h4 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors">Saheli</h4>
+                                <p class="text-[13px] md:text-sm text-textMuted leading-relaxed mb-5 flex-grow">
+                                    A visually appealing, responsive digital catalog website. Crafted entirely with vanilla web technologies to deliver a seamless, interactive user experience and product showcase.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-auto">
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">HTML5</span>
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">CSS3</span>
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">JavaScript</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 4: Nancow -->
+                        <div class="group flex flex-col bg-bgDark border border-subtle rounded-2xl overflow-hidden hover:border-subtle/80 hover:shadow-lg transition-all">
+                            <!-- Replace '#' with your live demo or video link -->
+                            <a href="nancow.mp4" target="_blank" class="relative h-48 sm:h-56 overflow-hidden block">
+                                <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Nancow Dairy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-bgDark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                                    <span class="px-4 py-2 bg-accent text-white text-sm font-medium rounded-lg shadow-lg flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                        <i class="fa-solid fa-play"></i> View Demo
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="p-5 md:p-6 flex flex-col flex-grow">
+                                <h4 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors">Nancow</h4>
+                                <p class="text-[13px] md:text-sm text-textMuted leading-relaxed mb-5 flex-grow">
+                                    A specialized e-commerce solution tailored for dairy products. Features a user-friendly interface optimized for quick browsing, product selection, and streamlined checkout processes.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-auto">
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">E-Commerce</span>
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">Web App</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 5: House of Farmer -->
+                        <div class="group flex flex-col bg-bgDark border border-subtle rounded-2xl overflow-hidden hover:border-subtle/80 hover:shadow-lg transition-all">
+                            <!-- Replace '#' with your live demo or video link -->
+                            <a href="hof.mp4" target="_blank" class="relative h-48 sm:h-56 overflow-hidden block">
+                                <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="House of Farmer" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-bgDark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                                    <span class="px-4 py-2 bg-accent text-white text-sm font-medium rounded-lg shadow-lg flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                        <i class="fa-solid fa-play"></i> View Demo
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="p-5 md:p-6 flex flex-col flex-grow">
+                                <h4 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors">House of Farmer</h4>
+                                <p class="text-[13px] md:text-sm text-textMuted leading-relaxed mb-5 flex-grow">
+                                    A direct-to-consumer fresh produce e-commerce application. Designed to connect farmers with consumers, featuring dynamic product listings and an intuitive cart system.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-auto">
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">E-Commerce</span>
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">UI/UX</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 6: Laxmi Narayan Hospital -->
+                        <div class="group flex flex-col bg-bgDark border border-subtle rounded-2xl overflow-hidden hover:border-subtle/80 hover:shadow-lg transition-all">
+                            <!-- Replace '#' with your live demo or video link -->
+                            <a href="https://lnhospital.com/" target="_blank" class="relative h-48 sm:h-56 overflow-hidden block">
+                                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Laxmi Narayan Hospital" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-bgDark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                                    <span class="px-4 py-2 bg-accent text-white text-sm font-medium rounded-lg shadow-lg flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                        <i class="fa-solid fa-play"></i> View Demo
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="p-5 md:p-6 flex flex-col flex-grow">
+                                <h4 class="text-lg font-bold text-textMain mb-2 group-hover:text-accent transition-colors">Laxmi Narayan Hospital</h4>
+                                <p class="text-[13px] md:text-sm text-textMuted leading-relaxed mb-5 flex-grow">
+                                    A healthcare-oriented digital platform providing hospital information, services, and patient resources. Designed with accessibility and a professional aesthetic in mind.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-auto">
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">Healthcare</span>
+                                    <span class="text-[11px] px-2.5 py-1 bg-subtle/40 border border-subtle text-textMuted rounded-md">Web Development</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                 <!-- ================= BLOG SECTION ================= -->
+                <section id="sec-blog" class="page-section hidden">
+                    <div class="mb-6 md:mb-8 relative">
+                        <h2 class="text-2xl md:text-3xl font-bold inline-block pb-3 md:pb-4 relative z-10">
+                            Publications & Writing
+                            <div class="absolute bottom-0 left-0 w-10 md:w-12 h-1 bg-accent rounded-sm"></div>
+                        </h2>
+                    </div>
+
+                    <div class="mb-6">
+                        <p class="text-sm md:text-[15px] text-textMuted leading-relaxed">
+                            I am currently planning to start writing technical articles on Medium soon. In the meantime, you can review my academic research work below.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- Research Paper -->
+                        <div class="bg-bgDark rounded-2xl border border-subtle overflow-hidden flex flex-col group hover:shadow-lg transition-all">
+                            <div class="p-6 md:p-8 flex flex-col flex-grow">
+                                <div class="flex items-center gap-3 text-[11px] md:text-xs text-accent mb-3 md:mb-4 uppercase tracking-wider font-semibold">
+                                    <span><i class="fa-solid fa-book-open mr-1.5"></i> Research Paper</span>
+                                </div>
+                                <h4 class="text-lg md:text-xl font-bold text-textMain mb-3 md:mb-4 group-hover:text-accent transition-colors">AI Against financial frauds: Detection and Secure Financial System</h4>
+                                <p class="text-[13px] md:text-sm text-textMuted leading-relaxed mb-6 flex-grow">
+                                    This research explores the application of advanced Artificial Intelligence techniques in detecting and mitigating financial fraud. It proposes robust methodologies for building secure financial systems by leveraging machine learning models to identify anomalous transaction patterns and secure vulnerabilities in real-time environments.
+                                </p>
+                                <div class="flex items-center gap-4 mt-auto">
+                                   <!-- Link to the paper opening in a new tab -->
+                                   <a href="https://drive.google.com/file/d/1Ohc7S6uZJS2sRac7LXJyZyTvlulDoR3r/view" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-subtle text-textMain text-xs font-medium rounded-lg border border-subtle hover:bg-accent hover:text-white hover:border-accent transition-colors flex items-center gap-2 inline-flex">
+                                       <i class="fa-solid fa-download"></i> View Publication
+                                   </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= CONTACT SECTION ================= -->
+                <section id="sec-contact" class="page-section hidden">
+                    <div class="mb-6 md:mb-8 relative">
+                        <h2 class="text-2xl md:text-3xl font-bold inline-block pb-3 md:pb-4 relative z-10">
+                            Contact
+                            <div class="absolute bottom-0 left-0 w-10 md:w-12 h-1 bg-accent rounded-sm"></div>
+                        </h2>
+                    </div>
+
+                    <div class="mb-5 md:mb-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-textMain">Contact Me</h3>
+                    </div>
+                    
+                    <div class="space-y-3 md:space-y-4">
+                        <!-- Email -->
+                        <a href="mailto:unnatishinganjude.work@gmail.com" class="flex items-center gap-3 md:gap-4 bg-[#1a1a1a] hover:bg-[#222222] transition-colors rounded-xl p-4 md:p-5 border border-transparent hover:border-subtle shadow-md group">
+                            <i class="fa-regular fa-envelope text-accent text-base md:text-lg w-5 md:w-6 text-center flex-shrink-0"></i>
+                            <span class="text-accent font-medium text-sm md:text-[15px] break-all sm:break-normal">unnatishinganjude.work@gmail.com</span>
+                        </a>
+
+                        <!-- GitHub -->
+                        <a href="https://github.com/UnnatiShinganjude/" target="_blank" class="flex items-center gap-3 md:gap-4 bg-[#1a1a1a] hover:bg-[#222222] transition-colors rounded-xl p-4 md:p-5 border border-transparent hover:border-subtle shadow-md group">
+                            <i class="fa-brands fa-github text-accent text-base md:text-lg w-5 md:w-6 text-center flex-shrink-0"></i>
+                            <span class="text-accent font-medium text-sm md:text-[15px]">Code On GitHub</span>
+                        </a>
+
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/unnati-s-ab377b327" target="_blank" class="flex items-center gap-3 md:gap-4 bg-[#1a1a1a] hover:bg-[#222222] transition-colors rounded-xl p-4 md:p-5 border border-transparent hover:border-subtle shadow-md group">
+                            <i class="fa-brands fa-linkedin-in text-accent text-base md:text-lg w-5 md:w-6 text-center flex-shrink-0"></i>
+                            <span class="text-accent font-medium text-sm md:text-[15px]">Connect On LinkedIn</span>
+                        </a>
+<!---
+                        //medium
+                        <a href="https://medium.com/@unnatishinganjude" target="_blank" class="flex items-center gap-3 md:gap-4 bg-[#1a1a1a] hover:bg-[#222222] transition-colors rounded-xl p-4 md:p-5 border border-transparent hover:border-subtle shadow-md group">
+                            <i class="fa-brands fa-medium text-accent text-base md:text-lg w-5 md:w-6 text-center flex-shrink-0"></i>
+                            <span class="text-accent font-medium text-sm md:text-[15px]">Follow On Medium</span>
+                        </a>
+
+                        //resume
+                        <a href="#" class="flex items-center gap-3 md:gap-4 bg-[#1a1a1a] hover:bg-[#222222] transition-colors rounded-xl p-4 md:p-5 border border-transparent hover:border-subtle shadow-md group">
+                            <i class="fa-regular fa-file-lines text-accent text-base md:text-lg w-5 md:w-6 text-center flex-shrink-0"></i>
+                            <span class="text-accent font-medium text-sm md:text-[15px]">Download Resume</span>
+                        </a>
+
+                        -->
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        /**
+         * Function to handle switching between portfolio sections
+         * @param {string} tabName - The name of the tab to switch to (about, resume, etc.)
+         */
+        function switchTab(tabName) {
+            // 1. Reset all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                // Remove active styling
+                btn.classList.remove('text-accent', 'bg-subtle/40', 'active');
+                // Add inactive styling
+                btn.classList.add('text-textMuted', 'hover:text-textMain', 'hover:bg-subtle/40');
+            });
+
+            // 2. Highlight clicked button
+            const activeBtn = document.getElementById(`btn-${tabName}`);
+            activeBtn.classList.remove('text-textMuted', 'hover:text-textMain', 'hover:bg-subtle/40');
+            activeBtn.classList.add('text-accent', 'bg-subtle/40', 'active');
+
+            // 3. Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => {
+                sec.classList.add('hidden');
+                sec.classList.remove('fade-in'); // Reset animation
+            });
+
+            // 4. Show target section with animation
+            const targetSec = document.getElementById(`sec-${tabName}`);
+            targetSec.classList.remove('hidden');
+            
+            // Force a reflow to restart the CSS animation
+            void targetSec.offsetWidth; 
+            targetSec.classList.add('fade-in');
+
+            // Optional: Scroll slightly up if on mobile to ensure content is visible
+            if (window.innerWidth < 1024) {
+                window.scrollTo({
+                    top: document.querySelector('main').offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    </script>
+</body>
+</html>
